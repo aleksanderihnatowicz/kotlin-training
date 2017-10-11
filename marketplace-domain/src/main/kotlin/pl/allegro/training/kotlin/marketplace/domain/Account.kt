@@ -5,7 +5,7 @@ package pl.allegro.training.kotlin.marketplace.domain
 // reprezentacja na JVM
 // typ nullowalny, wartość domyślna
 // klasa standardowo final, open
-data class Account(
+data class Account2(
         val id: String,
         val login: String,
         val password: String,
