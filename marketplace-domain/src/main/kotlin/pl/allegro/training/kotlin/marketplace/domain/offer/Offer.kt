@@ -1,8 +1,6 @@
-package pl.allegro.training.kotlin.marketplace.domain
+package pl.allegro.training.kotlin.marketplace.domain.offer
 
 import java.math.BigDecimal
-import java.math.BigDecimal.ONE
-import java.math.BigDecimal.ZERO
 // alias
 import java.time.ZonedDateTime as DateTime
 
@@ -32,7 +30,7 @@ data class Offer(
     fun deactivate(): Offer {
         return when (status) {
             OfferStatus.ACTIVE -> copy(status = OfferStatus.INACTIVE)
-            else -> throw OfferAlreadyInactiveException()
+            else               -> throw OfferAlreadyInactiveException()
         }
     }
 }

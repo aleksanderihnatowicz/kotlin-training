@@ -4,17 +4,25 @@ buildscript {
 	}
 
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 
 	dependencies {
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+
 	}
 }
 
 group = 'pl.allegro.training.kotlin'
 version = '1.0.0'
+
+allprojects() {
+	buildscript {
+		repositories {
+			jcenter()
+		}
+	}
+}
 
 subprojects {
 	apply plugin: 'java'
@@ -23,17 +31,19 @@ subprojects {
 	sourceCompatibility = 1.8
 
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 
 	dependencies {
-		compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
-		compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+		compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
+		compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+		testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
 	}
 
 	compileKotlin {
 		kotlinOptions.jvmTarget = "1.8"
 	}
+	
 	compileTestKotlin {
 		kotlinOptions.jvmTarget = "1.8"
 	}

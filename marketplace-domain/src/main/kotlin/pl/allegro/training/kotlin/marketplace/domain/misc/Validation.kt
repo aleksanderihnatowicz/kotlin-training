@@ -1,0 +1,1 @@
+val EMAIL_REGEX = Regex("[a-zA-Z.]+@[a-zA-Z.]")
