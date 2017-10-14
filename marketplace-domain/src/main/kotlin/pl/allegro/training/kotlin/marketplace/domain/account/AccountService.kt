@@ -11,4 +11,6 @@ class AccountService {
         repository.save(accountWithId)
         return accountWithId
     }
+
+    fun getAccounts(): List<Account> = repository.findAll()
 }

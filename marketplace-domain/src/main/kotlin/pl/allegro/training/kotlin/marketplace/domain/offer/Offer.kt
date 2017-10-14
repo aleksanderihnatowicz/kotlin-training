@@ -1,46 +1,75 @@
 package pl.allegro.training.kotlin.marketplace.domain.offer
 
-import java.math.BigDecimal
-// alias
-import java.time.ZonedDateTime as DateTime
-
-// powiedziec o typealias
-typealias AccountId = Int
+import pl.allegro.training.kotlin.marketplace.domain.misc.IdGenerator
+import pl.allegro.training.kotlin.marketplace.domain.misc.Repository
+import pl.allegro.training.kotlin.marketplace.domain.search.Document
+import pl.allegro.training.kotlin.marketplace.domain.search.DocumentId
+import pl.allegro.training.kotlin.marketplace.domain.search.Indexer
+import pl.allegro.training.kotlin.marketplace.domain.search.MemoryIndex
+import pl.allegro.training.kotlin.marketplace.domain.search.Searcher
+import pl.allegro.training.kotlin.marketplace.domain.search.WhitespaceTokenizer
 
 data class Offer(
-        val id: String,
-        val price: BigDecimal,
-        val discount: BigDecimal?,
+        override val id: String?,
+        val sellerId: String?,
         val title: String,
-        val description: String,
-        val createdOn: DateTime,
-        val status: OfferStatus,
-        val accountId: AccountId
+        val description: String
+) : Identifiable
 
-) {
-    // definicja property
-    // nadpisywanie gettera
-    // elvis
-    // operacje na BigDecimal
-    val discountedPrice: BigDecimal
-        get() = price * (BigDecimal.ONE - (discount ?: BigDecimal.ZERO))
+class OfferService(private val offerRepository: OfferRepository, private val idGenerator: IdGenerator) {
+    private val offerIndexer: Indexer
+    private val offerSearcher: Searcher
 
-    // when jako expression, if też
-    // copy
-    fun deactivate(): Offer {
-        return when (status) {
-            OfferStatus.ACTIVE -> copy(status = OfferStatus.INACTIVE)
-            else               -> throw OfferAlreadyInactiveException()
-        }
+    // complex initialization of fields
+    init {
+        val index = MemoryIndex()
+        val tokenizer = WhitespaceTokenizer()
+        offerIndexer = Indexer(index, tokenizer)
+        offerSearcher = Searcher(index)
     }
+
+    fun addOffer(offer: Offer, sellerId: String) {
+        // data class generates copy() for us
+        val persistent = offer.copy(id = idGenerator.getNextId(), sellerId = sellerId)
+        offerRepository.save(persistent)
+        // extension function for conversion
+        offerIndexer.add(offer.asDocument())
+    }
+
+    // map + filterNotNull = mapNotNull
+    fun findOffers(query: String): List<Offer> = offerSearcher.search(query).mapNotNull { offerRepository.findById(it.value) }
+
+    // !! operator
+    // string concatenation
+    // let eases type conversion
+    private fun Offer.asDocument(): Document = Document(this.id!!.let(::DocumentId), "$title $description")
 }
 
-class OfferAlreadyInactiveException : RuntimeException()
-
-// definicja enuma
-enum class OfferStatus {
-    ACTIVE, INACTIVE
+// interface with property
+interface Identifiable {
+    val id: String?
 }
 
-//dodać walidacje, nie mozna utworzyc obiekt z price < 0; discount w zakresie 0 < d < 1
-//dodac funkcje reaktywacji oferty
+// interface inheritance
+interface OfferRepository : Repository<Offer, String>
+
+// interface implementation
+class MemoryOfferRepository : OfferRepository {
+    private val offers = HashMap<String, Offer>()
+
+    // pair syntax sugar
+    // smart cast of offer id
+    override fun save(entity: Offer) {
+        if(entity.id == null) {
+            throw InvalidOfferException()
+        }
+        offers += entity.id to entity
+    }
+
+    override fun findAll(): List<Offer> = offers.values.toList()
+
+    // getting from map through get operator
+    override fun findById(id: String): Offer? = offers[id]
+}
+
+class InvalidOfferException : RuntimeException()

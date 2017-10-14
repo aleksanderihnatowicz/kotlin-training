@@ -3,14 +3,14 @@ package pl.allegro.training.kotlin.marketplace.domain.account
 class MemoryAccountRepository : AccountRepository {
     private val accounts: MutableMap<String, Account> = mutableMapOf()
 
-    override fun save(account: Account) {
-        if(account.id == null) {
+    override fun save(entity: Account) {
+        if(entity.id == null) {
             throw InvalidAccountException("Id is not initialized.")
         }
-        accounts.put(account.id, account)
+        accounts.put(entity.id, entity)
     }
 
-    override fun getById(id: String): Account = TODO("""
-        Treść zadania
-    """)
+    override fun findAll(): List<Account> = accounts.values.toList()
+
+    override fun findById(id: String): Account? = accounts[id]
 }
