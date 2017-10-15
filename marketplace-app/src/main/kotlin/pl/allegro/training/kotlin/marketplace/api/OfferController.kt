@@ -28,7 +28,7 @@ class OfferController {
 
     // have to set default argument value via annotation, Kotlin's default arguments don't work with Spring 4 (5.0 changes that)
     @GetMapping("/offers")
-    fun findOffers(@RequestParam(defaultValue = "aaa") query: String): OfferListResponse =
+    fun findOffers(@RequestParam(defaultValue = "") query: String): OfferListResponse =
             offerService.findOffers(query)
                     .map { it.asOfferResponse() }
                     .let { OfferListResponse(it) }
