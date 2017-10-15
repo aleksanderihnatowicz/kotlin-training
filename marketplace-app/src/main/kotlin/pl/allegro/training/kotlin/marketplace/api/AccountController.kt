@@ -27,9 +27,9 @@ class AccountController(private val accountService: AccountService) {
                     .let { ResponseEntity(it.asAccountResponse(), HttpStatus.CREATED) }
 
     @GetMapping
-    fun getAccounts(): AccountListDto = accountService.getAccounts()
+    fun getAccounts(): AccountListResponse = accountService.getAccounts()
             .map { it.asAccountResponse() }
-            .let { AccountListDto(it) }
+            .let { AccountListResponse(it) }
 }
 
 class AccountCreationRequest(
@@ -65,6 +65,6 @@ fun Account.asAccountResponse() = AccountResponse(
         version = version.toLong()
 )
 
-class AccountListDto(
+class AccountListResponse(
         val accounts: List<AccountResponse>
 )

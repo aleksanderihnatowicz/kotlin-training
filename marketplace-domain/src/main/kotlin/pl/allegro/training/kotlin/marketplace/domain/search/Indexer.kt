@@ -104,11 +104,15 @@ class QueryParser {
 
     // when expression
     // getting first character of string with [] operator
-    private fun String.asPhrase(): Phrase = when (this[0]) {
+    private fun String.asPhrase(): Phrase = when (this.firstCharacter) {
         '+'  -> Phrase.required(this.substring(1))
         '-'  -> Phrase.forbidden(this.substring(1))
         else -> Phrase.optional(this)
     }
+
+    // extension property
+    private val String.firstCharacter
+        get() = this[0]
 }
 
 fun main(args: Array<String>) {

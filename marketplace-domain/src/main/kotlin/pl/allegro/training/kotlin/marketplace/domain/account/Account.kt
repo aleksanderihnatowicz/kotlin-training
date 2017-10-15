@@ -1,9 +1,7 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
 
-import pl.allegro.training.kotlin.marketplace.domain.offer.Identifiable
-
-// compile-time constant - only primitive types + String
-const val EMAIL_REGEX = "[a-zA-Z.]+@[a-zA-Z.]+"
+import pl.allegro.training.kotlin.marketplace.domain.misc.Identifiable
+import pl.allegro.training.kotlin.marketplace.domain.misc.isValidEmail
 
 class Rating(val likes: Int, val dislikes: Int) {
     // secondary constructor - must call primary
@@ -16,6 +14,11 @@ class Rating(val likes: Int, val dislikes: Int) {
     // virtual property - custom getter
     val likeRatio: Double
         get() = likes.toDouble() / (likes + dislikes).toDouble()
+
+    // deconstruction contract
+    operator fun component1() = likes
+
+    operator fun component2() = dislikes
 }
 
 data class Account(
@@ -28,16 +31,13 @@ data class Account(
         val version: Int = 0,
         val rating: Rating = Rating.INITIAL
 ) : Identifiable {
+
     init {
-        // isNullOrEmpty to extension function
-        if(!email.isValidEmail()) {
-            // tworzenie obiektu nie wymaga new
+        if(!isValidEmail(email)) {
+            // no new operator upon object construction
             throw InvalidAccountException("Invalid email: $email")
         }
     }
-
-    // infix notation of matches
-    private fun String.isValidEmail() = this matches Regex(EMAIL_REGEX)
 
     fun addAddress(address: Address): Account = TODO()
 }
@@ -46,9 +46,7 @@ open class Address(
         val street: String,
         val city: String,
         val zipCode: String
-) {
-    constructor(data: Triple<String, String, String>) : this(data.first, data.second, data.third)
-}
+)
 
 // cwiczenia
 // zaimplementowac Address
