@@ -1,16 +1,14 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
 
-import pl.allegro.training.kotlin.marketplace.domain.misc.UuidIdGenerator
+import pl.allegro.training.kotlin.marketplace.domain.misc.IdGenerator
 
-class AccountService {
-    val repository = MemoryAccountRepository()
-    val idGenerator = UuidIdGenerator()
+class AccountService(private val accountRepository: AccountRepository, private val idGenerator: IdGenerator) {
 
     fun addAccount(account: Account): Account {
         val accountWithId = account.copy(id = account.id ?: idGenerator.getNextId())
-        repository.save(accountWithId)
+        accountRepository.save(accountWithId)
         return accountWithId
     }
 
-    fun getAccounts(): List<Account> = repository.findAll()
+    fun getAccounts(): List<Account> = accountRepository.findAll()
 }

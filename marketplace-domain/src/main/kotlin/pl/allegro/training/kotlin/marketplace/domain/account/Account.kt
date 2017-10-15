@@ -30,7 +30,7 @@ data class Account(
         val addresses: List<Address>,
         val version: Int = 0,
         val rating: Rating = Rating.INITIAL
-) : Identifiable {
+) : Identifiable<String> {
 
     init {
         if(!isValidEmail(email)) {

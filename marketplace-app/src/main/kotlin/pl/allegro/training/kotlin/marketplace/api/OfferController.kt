@@ -23,7 +23,7 @@ class OfferController {
 
     @PostMapping("/accounts/{accountId}/offers")
     fun addOffer(@PathVariable accountId: String, @RequestBody creationRequest: OfferCreationRequest): ResponseEntity<OfferResponse> {
-        return offerService.addOffer(creationRequest.asOffer(accountId)).let { ResponseEntity(it.asOfferResponse(), HttpStatus.OK) }
+        return offerService.addOffer(creationRequest.asOffer(accountId)).let { ResponseEntity(it.asOfferResponse(), HttpStatus.CREATED) }
     }
 
     // have to set default argument value via annotation, Kotlin's default arguments don't work with Spring 4 (5.0 changes that)

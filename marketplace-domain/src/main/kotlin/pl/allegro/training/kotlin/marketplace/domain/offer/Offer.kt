@@ -9,4 +9,4 @@ data class Offer(
         val title: String,
         val description: String,
         val price: BigDecimal = BigDecimal.ZERO
-) : Identifiable
+) : Identifiable<String>

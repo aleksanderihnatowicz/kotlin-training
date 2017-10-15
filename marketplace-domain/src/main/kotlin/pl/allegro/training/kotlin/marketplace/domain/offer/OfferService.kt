@@ -3,10 +3,11 @@ package pl.allegro.training.kotlin.marketplace.domain.offer
 import pl.allegro.training.kotlin.marketplace.domain.misc.IdGenerator
 import pl.allegro.training.kotlin.marketplace.domain.search.Document
 import pl.allegro.training.kotlin.marketplace.domain.search.DocumentId
+import pl.allegro.training.kotlin.marketplace.domain.search.EmptyQueryException
 import pl.allegro.training.kotlin.marketplace.domain.search.Indexer
-import pl.allegro.training.kotlin.marketplace.domain.search.MemoryIndex
 import pl.allegro.training.kotlin.marketplace.domain.search.Searcher
-import pl.allegro.training.kotlin.marketplace.domain.search.WhitespaceTokenizer
+import pl.allegro.training.kotlin.marketplace.domain.search.index.MemoryIndex
+import pl.allegro.training.kotlin.marketplace.domain.search.tokenizer.WhitespaceTokenizer
 import java.math.BigDecimal
 
 class OfferService(private val offerRepository: OfferRepository, private val idGenerator: IdGenerator) {
@@ -32,7 +33,12 @@ class OfferService(private val offerRepository: OfferRepository, private val idG
     }
 
     // map + filterNotNull = mapNotNull
-    fun findOffers(query: String): List<Offer> = offerSearcher.search(query).mapNotNull { offerRepository.findById(it.value) }
+    // try-catch is an expression
+    fun findOffers(query: String): List<Offer> = try {
+        offerSearcher.search(query).mapNotNull { offerRepository.findById(it.value) }
+    } catch (e: EmptyQueryException) {
+        emptyList()
+    }
 
     // !! operator
     // string concatenation
