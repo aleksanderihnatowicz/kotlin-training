@@ -8,18 +8,18 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import pl.allegro.training.kotlin.marketplace.adapter.repository.MemoryAccountRepository
+import pl.allegro.training.kotlin.marketplace.adapter.repository.MemoryOfferRepository
 import pl.allegro.training.kotlin.marketplace.domain.account.AccountRepository
 import pl.allegro.training.kotlin.marketplace.domain.account.AccountService
-import pl.allegro.training.kotlin.marketplace.domain.account.MemoryAccountRepository
-import pl.allegro.training.kotlin.marketplace.domain.misc.IdGenerator
-import pl.allegro.training.kotlin.marketplace.domain.misc.UuidIdGenerator
-import pl.allegro.training.kotlin.marketplace.domain.offer.MemoryOfferRepository
 import pl.allegro.training.kotlin.marketplace.domain.offer.OfferRepository
 import pl.allegro.training.kotlin.marketplace.domain.offer.OfferService
 import pl.allegro.training.kotlin.marketplace.domain.order.MemoryOrderRepository
 import pl.allegro.training.kotlin.marketplace.domain.order.OrderRepository
 import pl.allegro.training.kotlin.marketplace.domain.order.OrderService
 import pl.allegro.training.kotlin.marketplace.domain.order.OrderValidator
+import pl.allegro.training.kotlin.marketplace.infrastructure.id.IdGenerator
+import pl.allegro.training.kotlin.marketplace.infrastructure.id.UuidIdGenerator
 import java.math.BigDecimal
 
 
