@@ -1,7 +1,12 @@
-package pl.allegro.training.kotlin.marketplace.util
+package pl.allegro.training.kotlin.util.hash
 
 import java.security.MessageDigest
 
+/**
+ * Hashing Utils
+ * @author Sam Clarke <www.samclarke.com>
+ * @license MIT
+ */
 object SecureHashAlgorithmUtils {
     fun sha512(input: String) = hashString("SHA-512", input)
 
@@ -22,8 +27,7 @@ object SecureHashAlgorithmUtils {
      */
     private fun hashString(type: String, input: String): String {
         val HEX_CHARS = "0123456789ABCDEF"
-        val bytes = MessageDigest
-                .getInstance(type)
+        val bytes = MessageDigest.getInstance(type)
                 .digest(input.toByteArray())
         val result = StringBuilder(bytes.size * 2)
 

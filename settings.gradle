@@ -1,3 +1,4 @@
 include 'marketplace-domain'
 include 'marketplace-app'
+include 'marketplace-utils'
 
