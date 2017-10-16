@@ -13,7 +13,6 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile project(":marketplace-domain")
     compile project(":marketplace-utils")
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
