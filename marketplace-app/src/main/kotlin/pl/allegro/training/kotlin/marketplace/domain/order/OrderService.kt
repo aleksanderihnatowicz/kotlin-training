@@ -18,8 +18,8 @@ class OrderService(
         return persisted
     }
 
-    fun getOrdersByBuyer(buyerId: String): List<Order> {
-        if (!accountRepository.exists(buyerId)) throw AccountNotFoundException(buyerId)
-        return orderRepository.findByBuyerId(buyerId)
+    fun getOrdersByBuyer(buyerAccountId: String): List<Order> {
+        if (buyerAccountId in accountRepository) throw AccountNotFoundException(buyerAccountId)
+        return orderRepository.findByBuyerId(buyerAccountId)
     }
 }

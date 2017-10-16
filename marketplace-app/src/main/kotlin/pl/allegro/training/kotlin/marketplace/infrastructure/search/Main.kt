@@ -1,6 +1,5 @@
 package pl.allegro.training.kotlin.marketplace.infrastructure.search
 
-
 /*fun main(args: Array<String>) {
     val index = MemoryIndex()
     val indexer = Indexer(index, WhitespaceTokenizer())
@@ -21,4 +20,4 @@ package pl.allegro.training.kotlin.marketplace.infrastructure.search
     val searcher = Searcher(index)
     val docs = searcher.search("+ma")
     println(docs)
-} */
+}*/

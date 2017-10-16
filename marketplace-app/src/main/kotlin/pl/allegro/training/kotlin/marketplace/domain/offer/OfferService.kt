@@ -26,7 +26,7 @@ class OfferService(private val offerRepository: OfferRepository, private val idG
         val persistent = offer.copy(id = offer.id ?: idGenerator.getNextId())
         offerRepository.save(persistent)
         // extension function for conversion
-        offerIndexer.add(persistent.asDocument())
+        offerIndexer += persistent.asDocument()
         return persistent
     }
 

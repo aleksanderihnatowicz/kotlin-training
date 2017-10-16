@@ -25,3 +25,6 @@ data class Order(
 enum class OrderStatus {
     PENDING, ACCEPTED, DELIVERED
 }
+
+// dopisać endpoint
+val c = OrderStatus.PENDING..OrderStatus.DELIVERED

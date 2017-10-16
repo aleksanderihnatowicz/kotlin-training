@@ -6,7 +6,7 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.tokenizer.To
 
 class Indexer(private val index: Index, private val tokenizer: Tokenizer) {
 
-    fun add(doc: Document) {
+    operator fun plusAssign(doc: Document) {
         val tokens = tokenizer.tokenize(doc.text)
         tokens.forEach {
             index.addTokenOccurrence(it to doc.id)
