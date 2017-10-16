@@ -4,11 +4,13 @@ import org.springframework.stereotype.Component
 import pl.allegro.training.kotlin.marketplace.domain.offer.Offer
 import pl.allegro.training.kotlin.marketplace.domain.offer.OfferService
 import java.math.BigDecimal
+import javax.annotation.PostConstruct
 
 @Component
-class OfferDataInitializer(service: OfferService) {
+class OfferDataInitializer(private val service: OfferService) {
 
-    init {
+    @PostConstruct
+    fun init() {
         val sampleOffer = Offer(
                 id = "5D149384",
                 sellerId = "F4375026",

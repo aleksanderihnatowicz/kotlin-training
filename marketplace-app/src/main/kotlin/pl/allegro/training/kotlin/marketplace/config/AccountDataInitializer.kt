@@ -3,11 +3,13 @@ package pl.allegro.training.kotlin.marketplace.config
 import org.springframework.stereotype.Component
 import pl.allegro.training.kotlin.marketplace.domain.account.Account
 import pl.allegro.training.kotlin.marketplace.domain.account.AccountService
+import javax.annotation.PostConstruct
 
 @Component
-class AccountDataInitializer(service: AccountService) {
+class AccountDataInitializer(private val service: AccountService) {
 
-    init {
+    @PostConstruct
+    fun init() {
         val sampleAccount = Account(
                 id = "F4375026",
                 login = "john",
