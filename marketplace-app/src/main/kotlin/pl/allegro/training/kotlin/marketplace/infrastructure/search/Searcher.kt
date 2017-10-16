@@ -26,7 +26,8 @@ class Searcher(
     }
 
     private fun Index.getDocumentsWithTokens(tokens: List<String>): Set<DocumentId> =
-            tokens.flatMap { token -> this.getTokenOccurrences(token) }.toSet()
+            // użycie referencji do funkcji ::funName
+            tokens.flatMap(this::getTokenOccurrences).toSet()
 }
 
 class EmptyQueryException : RuntimeException()
