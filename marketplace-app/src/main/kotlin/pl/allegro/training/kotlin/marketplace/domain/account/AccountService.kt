@@ -15,6 +15,6 @@ class AccountService(private val accountRepository: AccountRepository, private v
     fun getAccounts(): List<Account> = accountRepository.findAll()
 
     companion object {
-        val logger by logger()
+        private val logger by logger()
     }
 }
