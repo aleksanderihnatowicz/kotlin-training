@@ -1,4 +1,4 @@
-package pl.allegro.training.kotlin.marketplace.api
+package pl.allegro.training.kotlin.marketplace.adapter.rest
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -1,4 +1,4 @@
-package pl.allegro.training.kotlin.marketplace.api
+package pl.allegro.training.kotlin.marketplace.adapter.rest
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
