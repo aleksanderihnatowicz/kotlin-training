@@ -23,7 +23,7 @@ data class Order(
 ) : Identifiable<String>
 
 enum class OrderStatus {
-    PENDING, ACCEPTED, DELIVERED
+    NOT_PAID, PENDING, ACCEPTED, DELIVERED
 }
 
 // dopisać endpoint

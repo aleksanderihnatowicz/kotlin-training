@@ -35,7 +35,7 @@ private fun Order.asOrderResponse(): OrderResponse = OrderResponse(id!!, offerId
 class OrderResponse(
         val id: String,
         val offerId: String,
-        val status: String
+        val status: String // TODO heldStatuses on range
 )
 
 class OrderListResponse(val orders: List<OrderResponse>)
