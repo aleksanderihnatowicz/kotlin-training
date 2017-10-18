@@ -19,7 +19,14 @@ class OrderService(
     }
 
     fun getOrdersByBuyer(buyerAccountId: String): List<Order> {
-        if (buyerAccountId in accountRepository) throw AccountNotFoundException(buyerAccountId)
+        if (buyerAccountId !in accountRepository) throw AccountNotFoundException(buyerAccountId)
         return orderRepository.findByBuyerId(buyerAccountId)
+    }
+
+    fun addPayment(orderId: String, payment: Payment): Order {
+        val order = orderRepository.findById(orderId) ?: throw OrderNotFoundException(orderId)
+        val orderWithPayment = order.copy(payment = payment, status = OrderStatus.PENDING)
+        orderRepository.save(orderWithPayment)
+        return orderWithPayment
     }
 }
