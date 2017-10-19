@@ -18,6 +18,6 @@ class ExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
 
 }
 
-class ErrorResponse(val exception: String?, val message: String?)
+data class ErrorResponse(val exception: String?, val message: String?)
 
-fun RuntimeException.asErrorResponse() = ErrorResponse(this::class.qualifiedName, this.message)
+fun RuntimeException.asErrorResponse() = ErrorResponse(this::class.simpleName, this.message)

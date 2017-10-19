@@ -26,6 +26,7 @@ allprojects() {
 
 subprojects {
 	apply plugin: 'java'
+	apply plugin: 'groovy'
 	apply plugin: 'kotlin'
 
 	sourceCompatibility = 1.8
@@ -38,6 +39,7 @@ subprojects {
 		compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
 		compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 		testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+		testCompile('org.codehaus.groovy:groovy-all:2.4.12')
 	}
 
 	compileKotlin {
