@@ -9,7 +9,10 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.Searcher
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.index.MemoryIndex
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.tokenizer.WhitespaceTokenizer
 
-class OfferService(private val offerRepository: OfferRepository, private val idGenerator: IdGenerator) {
+class OfferService(
+        private val offerRepository: OfferRepository,
+        private val idGenerator: IdGenerator
+) {
     private val offerIndexer: Indexer
     private val offerSearcher: Searcher
 
