@@ -16,7 +16,7 @@ import pl.allegro.training.kotlin.marketplace.domain.order.OrderValidator
 import pl.allegro.training.kotlin.marketplace.infrastructure.id.HexIdGenerator
 import pl.allegro.training.kotlin.marketplace.infrastructure.id.IdGenerator
 
-
+// 9b. konfig musi byc open, fun tez, opowiedziec o pluginie gradleowym, spread operator
 
 @SpringBootApplication
 class MarketplaceApplication {

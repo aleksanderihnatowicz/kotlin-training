@@ -2,6 +2,7 @@ package pl.allegro.training.kotlin.marketplace.domain.order
 
 import pl.allegro.training.kotlin.marketplace.infrastructure.repository.Identifiable
 
+//@Piotrek
 data class Order(
         override val id: String? = null,
         val offerId: String,

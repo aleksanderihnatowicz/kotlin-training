@@ -5,6 +5,7 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.parser.Query
 
 typealias  Scorer = (docId: DocumentId) -> Double
 
+// pokazać ekstractowanie typu do typealiasu za pomoca refactora
 typealias ScorerFactory = (optionalDocs: Set<DocumentId>) -> Scorer
 
 class Searcher(
@@ -19,12 +20,14 @@ class Searcher(
         val validDocs = index.getDocumentsWithTokens(query.filter { phrase -> phrase.required }.map { it.value })
         val invalidDocs = index.getDocumentsWithTokens(query.filter { phrase -> phrase.forbidden }.map { it.value })
         val optionalDocs = index.getDocumentsWithTokens(query.filter { phrase -> phrase.optional }.map { it.value })
+        // pokazac invoka
         val scorer = scorerFactory.invoke(optionalDocs)
         // operation on sets with operators
         // scorer as a high-order function
         return (validDocs - invalidDocs).sortedBy(scorer)
     }
 
+    // przepisac na funkcje przyjmujaca predykat od phrase
     private fun Index.getDocumentsWithTokens(tokens: List<String>): Set<DocumentId> =
             // użycie referencji do funkcji ::funName
             tokens.flatMap(this::getTokenOccurrences).toSet()
@@ -32,7 +35,9 @@ class Searcher(
 
 class EmptyQueryException : RuntimeException()
 
+// anonimowa funkcja
 private val boostingScorerFactory: ScorerFactory = { optionalDocs ->
+    // operator in
     { docId -> (docId in optionalDocs).asDouble() }
 }
 

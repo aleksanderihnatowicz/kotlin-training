@@ -10,7 +10,7 @@ class MemoryIndex : Index {
         // omitting unwanted arguments with _
         // if one-liner
         store.compute(token) { _, documentIds ->
-            if (documentIds == null) mutableSetOf(docId) else documentIds + docId
+            if (documentIds == null) setOf(docId) else documentIds + docId
         }
     }
 

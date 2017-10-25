@@ -1,5 +1,6 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
 
+// @Piotrek
 // na koniec 1 czesci
 
 class Rating(val likes: Int, val dislikes: Int) {
