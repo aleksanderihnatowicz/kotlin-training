@@ -1,5 +1,7 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
 
+// na koniec 1 czesci
+
 class Rating(val likes: Int, val dislikes: Int) {
     // secondary constructor - must call primary
     constructor(data: Pair<Int, Int>) : this(data.first, data.second)
