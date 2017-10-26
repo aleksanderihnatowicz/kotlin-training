@@ -4,7 +4,7 @@ package pl.allegro.training.kotlin.marketplace.infrastructure.repository
 
 // invariance
 // dodac dziedziczenie z Identifiable
-interface Repository<Entity, in Id> {
+interface Repository<Entity: Identifiable<Id>, Id> {
     fun save(entity: Entity)
     fun findById(id: Id): Entity?
     fun findAll(): List<Entity>
