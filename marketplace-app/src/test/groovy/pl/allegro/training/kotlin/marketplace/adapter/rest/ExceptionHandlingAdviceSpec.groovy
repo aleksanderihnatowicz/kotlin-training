@@ -16,7 +16,6 @@ class ExceptionHandlingAdviceSpec extends Specification {
         def exception = new MyException("An error message")
 
         expect:
-        // invoking extension method - receiver as first argument
         ExceptionHandlingAdviceKt.asErrorResponse(exception) == new ErrorResponse("MyException", "An error message")
     }
 

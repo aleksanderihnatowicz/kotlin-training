@@ -7,15 +7,10 @@ class MemoryIndex : Index {
 
     override fun addTokenOccurrence(occurrence: Pair<String, DocumentId>) {
         val (token, docId) = occurrence
-        // omitting unwanted arguments with _
-        // if one-liner
         store.compute(token) { _, documentIds ->
             if (documentIds == null) setOf(docId) else documentIds + docId
         }
     }
 
-    override fun getTokenOccurrences(token: String): Set<DocumentId> {
-        // emptySet()
-        return store.getOrDefault(token, emptySet())
-    }
+    override fun getTokenOccurrences(token: String): Set<DocumentId> = store.getOrDefault(token, emptySet())
 }

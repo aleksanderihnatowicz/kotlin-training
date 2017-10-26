@@ -27,7 +27,6 @@ class QueryParserSpec extends Specification {
 
         expect:
         parser.parse(query) == [
-                // invoking companion object method with @JvmStatic
                 Phrase.required("quick"),
                 Phrase.optional("brown"),
                 Phrase.forbidden("fox")

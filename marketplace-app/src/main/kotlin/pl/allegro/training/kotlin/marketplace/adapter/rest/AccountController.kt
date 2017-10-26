@@ -9,15 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import pl.allegro.training.kotlin.marketplace.domain.account.Account
 import pl.allegro.training.kotlin.marketplace.domain.account.AccountService
-import pl.allegro.training.kotlin.util.hash.SecureHashAlgorithmUtils as SHA // alias - renaming class to shorter name
-
-// annotation on constructor - no need to do this in current versions of Spring
-//@RestController
-//class AccountController2 @Autowired constructor(private val accountService: AccountService) {
-//
-//}
-
-// 9c.
+import pl.allegro.training.kotlin.util.hash.SecureHashAlgorithmUtils as SHA
 
 @RestController
 @RequestMapping("/accounts")
@@ -42,7 +34,6 @@ class AccountCreationRequest(
 ) {
     fun asAccount(): Account = Account(
             login = login,
-            // cannot use sha256 if marked as internal
             passwordHash = SHA.sha256(password),
             email = email,
             phoneNumber = phoneNumber,
@@ -63,7 +54,6 @@ fun Account.asAccountResponse() = AccountResponse(
         login = login,
         email = email,
         phoneNumber = phoneNumber,
-        // no implicit lossless conversion
         version = version.toLong()
 )
 

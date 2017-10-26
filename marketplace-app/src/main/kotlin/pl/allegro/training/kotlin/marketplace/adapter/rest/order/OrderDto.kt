@@ -12,7 +12,6 @@ class OrderCreationRequest(val offerId: String) {
 fun Order.asOrderResponse(): OrderResponse = OrderResponse(
         id = id!!,
         offerId = offerId,
-        // status in range
         paid = (OrderStatus.PENDING..OrderStatus.DELIVERED).contains(status),
         payment = payment.asPaymentResponse()
 )

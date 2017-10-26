@@ -16,12 +16,7 @@ class PaymentResponse(
 
 val expirationDateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yy/MM")
 
-// extension function on nullable type
-// usage of run
 fun Payment?.asPaymentResponse(): PaymentResponse? = this?.run {
-    // when this is
-    // no need for else
-    // is on CashOnDeliver can be omitted, identity equality
     when (this) {
         is Payment.CashOnDelivery -> PaymentResponse(PaymentType.CASH_ON_DELIVERY)
         is Payment.CreditCard     -> PaymentResponse(PaymentType.CREDIT_CARD, cardNumber, expirationDate.format(expirationDateFormatter), cvv)
@@ -50,7 +45,6 @@ class PaymentCreationRequest(
         if(cardNumber == null || expirationDate == null || cvv == null) {
             throw InvalidPaymentDataException("To create credit card payment provide card number, expiration date and cvv.")
         }
-        // smart casts
         return Payment.CreditCard(cardNumber, YearMonth.parse(expirationDate, expirationDateFormatter), cvv)
     }
 

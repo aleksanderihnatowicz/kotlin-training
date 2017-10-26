@@ -2,10 +2,6 @@ package pl.allegro.training.kotlin.marketplace.infrastructure.search
 
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.tokenizer.Tokenizer
 
-val LineTokenizer = object: Tokenizer {
-    override fun tokenize(text: String): Set<String> = text.lineSequence().toSet()
-}
-
 /*fun main(args: Array<String>) {
     val index = MemoryIndex()
     val indexer = Indexer(index, WhitespaceTokenizer())
@@ -27,3 +23,7 @@ val LineTokenizer = object: Tokenizer {
     val docs = searcher.search("+ma")
     println(docs)
 }*/
+
+val lineTokenizer = object: Tokenizer {
+    override fun tokenize(text: String): Set<String> = text.lineSequence().toSet()
+}

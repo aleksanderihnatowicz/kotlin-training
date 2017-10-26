@@ -17,7 +17,6 @@ import java.math.BigDecimal
 @RestController
 class OfferController {
 
-    // this is how to inject dependency to property
     @Autowired
     private lateinit var offerService: OfferService
 
@@ -26,7 +25,6 @@ class OfferController {
         return offerService.addOffer(creationRequest.asOffer(accountId)).let { ResponseEntity(it.asOfferResponse(), HttpStatus.CREATED) }
     }
 
-    // have to set default argument value via annotation, Kotlin's default arguments don't work with Spring 4 (5.0 changes that)
     @GetMapping("/offers")
     fun findOffers(@RequestParam(defaultValue = "") query: String): OfferListResponse =
             offerService.findOffers(query)

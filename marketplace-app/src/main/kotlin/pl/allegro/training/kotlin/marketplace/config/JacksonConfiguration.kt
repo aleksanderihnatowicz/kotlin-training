@@ -12,12 +12,10 @@ import java.math.BigDecimal
 
 @Configuration
 class JacksonConfiguration {
-    // by default, Spring Boot serializes BigDecimal to json number
     @Bean
     fun moneyModule(): Module = SimpleModule().addSerializer(BigDecimalSerializer())
 }
 
-// actually, the code is from StackOverflow, pasted and a little bit refactored. The code was in Java, but Idea did the great job converting it to Kotlin.
 // https://stackoverflow.com/questions/11319445/java-to-jackson-json-serialization-money-fields
 class BigDecimalSerializer : JsonSerializer<BigDecimal>() {
 

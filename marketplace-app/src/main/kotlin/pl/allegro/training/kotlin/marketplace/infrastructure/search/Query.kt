@@ -3,16 +3,12 @@ package pl.allegro.training.kotlin.marketplace.infrastructure.search
 //class Query(phrases: Collection<Phrase>) : HashSet<Phrase>(phrases)
 typealias Query = HashSet<Phrase>
 
-// construction possibility blocked by private constructor - must use companion object
-// we want private constructor so we cannot use data class
 class Phrase private constructor(
         val value: String,
         val required: Boolean = false,
         val optional: Boolean = false,
         val forbidden: Boolean = false
 ) {
-    // companion object
-    // named parameters
     companion object {
         @JvmStatic
         fun required(value: String) = Phrase(value, required = true)
@@ -24,8 +20,6 @@ class Phrase private constructor(
         fun forbidden(value: String) = Phrase(value, forbidden = true)
     }
 
-    // generated equals and hashCode
-    // smart cast makes equals very concise
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
