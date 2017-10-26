@@ -34,6 +34,7 @@ data class Account(
         val email: String,
         val phoneNumber: String? = null,
         val addresses: List<Address>,
+        val status: AccountStatus = AccountStatus.ACTIVE,
         val version: Int = 0,
         val rating: Rating = Rating.INITIAL
 ) : Identifiable<AccountId> { // dopiero w 4 kroku
@@ -44,6 +45,10 @@ data class Account(
             throw InvalidAccountException("Invalid email: $email")
         }
     }
+}
+
+enum class AccountStatus {
+    ACTIVE, BLOCKED
 }
 
 open class Address(
