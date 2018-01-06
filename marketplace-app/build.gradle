@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.7.RELEASE'
+        springBootVersion = '1.5.9.RELEASE'
     }
     
     dependencies {
@@ -15,6 +15,6 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     compile project(":marketplace-utils")
     compile "org.springframework.boot:spring-boot-starter-web"
-    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.3"
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
