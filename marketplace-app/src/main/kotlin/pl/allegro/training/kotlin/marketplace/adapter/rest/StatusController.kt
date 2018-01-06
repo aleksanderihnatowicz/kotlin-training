@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class StatusController {
 
-    @GetMapping(path = arrayOf("/status"), produces = arrayOf("application/json"))
+    @GetMapping(path = ["/status"], produces = ["application/json"])
     fun getStatus(): String = """
         {
             "status": "OK"

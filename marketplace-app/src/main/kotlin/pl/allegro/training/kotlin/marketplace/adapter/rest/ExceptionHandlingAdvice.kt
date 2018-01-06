@@ -12,7 +12,7 @@ import pl.allegro.training.kotlin.marketplace.domain.account.AccountNotFoundExce
 @ControllerAdvice
 class ExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(value = AccountNotFoundException::class)
+    @ExceptionHandler(value = [AccountNotFoundException::class])
     protected fun handleNotFound(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
             ResponseEntity(exception.asErrorResponse(), HttpStatus.NOT_FOUND)
 
