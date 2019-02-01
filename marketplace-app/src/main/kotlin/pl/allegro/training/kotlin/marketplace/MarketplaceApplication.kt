@@ -1,7 +1,7 @@
 package pl.allegro.training.kotlin.marketplace
 
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import pl.allegro.training.kotlin.marketplace.adapter.repository.MemoryAccountRepository
 import pl.allegro.training.kotlin.marketplace.adapter.repository.MemoryOfferRepository
@@ -15,7 +15,6 @@ import pl.allegro.training.kotlin.marketplace.domain.order.OrderService
 import pl.allegro.training.kotlin.marketplace.domain.order.OrderValidator
 import pl.allegro.training.kotlin.marketplace.infrastructure.id.HexIdGenerator
 import pl.allegro.training.kotlin.marketplace.infrastructure.id.IdGenerator
-
 
 @SpringBootApplication
 class MarketplaceApplication {
@@ -50,7 +49,7 @@ class MarketplaceApplication {
 }
 
 fun main(args: Array<String>) {
-    SpringApplication.run(MarketplaceApplication::class.java, *args)
+    runApplication<MarketplaceApplication>(*args)
 }
 
 
