@@ -14,7 +14,9 @@ class AccountService(
         return accountWithId
     }
 
-    fun getAccounts(): List<Account> = accountRepository.findAll()
+    fun getAccountsByStatus(status: AccountStatus?): List<Account> =
+            accountRepository.findAll()
+                    .filter { status == it.status || status == null }
 
     companion object {
         private val logger by logger()
