@@ -7,7 +7,10 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.tokenizer.Wh
 
 class QueryParser(private val tokenizer: Tokenizer = WhitespaceTokenizer()) {
 
-    fun parse(query: String): Query = tokenizer.tokenize(query).map { it.asPhrase() }.let { Query(it) }
+    fun parse(query: String): Query {
+        val phrases = tokenizer.tokenize(query).map { it.asPhrase() }
+        return Query(phrases)
+    }
 
     private fun String.asPhrase(): Phrase = when (this[0]) {
         '+'  -> Phrase.required(this.substring(1))
