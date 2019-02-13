@@ -19,47 +19,47 @@ class AccountController(private val accountService: AccountService) {
 
     @PostMapping
     fun addAccount(@RequestBody creationRequest: AccountCreationRequest): ResponseEntity<AccountResponse> =
-            accountService.addAccount(creationRequest.asAccount())
-                    .let { ResponseEntity(it.asAccountResponse(), HttpStatus.CREATED) }
+        accountService.addAccount(creationRequest.asAccount())
+            .let { ResponseEntity(it.asAccountResponse(), HttpStatus.CREATED) }
 
     @GetMapping
     fun getAccounts(@RequestParam status: AccountStatus?): AccountListResponse =
-            accountService.getAccountsByStatus(status)
-                    .map { it.asAccountResponse() }
-                    .let { AccountListResponse(it) }
+        accountService.getAccountsByStatus(status)
+            .map { it.asAccountResponse() }
+            .let { AccountListResponse(it) }
 }
 
 class AccountCreationRequest(
-        val login: String,
-        val password: String,
-        val email: String,
-        val phoneNumber: String?
+    val login: String,
+    val password: String,
+    val email: String,
+    val phoneNumber: String?
 ) {
     fun asAccount(): Account = Account(
-            login = login,
-            passwordHash = SHA.sha256(password),
-            email = email,
-            phoneNumber = phoneNumber,
-            addresses = emptyList()
+        login = login,
+        passwordHash = SHA.sha256(password),
+        email = email,
+        phoneNumber = phoneNumber,
+        addresses = emptyList()
     )
 }
 
 class AccountResponse(
-        val id: String,
-        val login: String,
-        val email: String,
-        val phoneNumber: String?,
-        val version: Long
+    val id: String,
+    val login: String,
+    val email: String,
+    val phoneNumber: String?,
+    val version: Long
 )
 
 fun Account.asAccountResponse() = AccountResponse(
-        id = id!!,
-        login = login,
-        email = email,
-        phoneNumber = phoneNumber,
-        version = version.toLong()
+    id = id!!,
+    login = login,
+    email = email,
+    phoneNumber = phoneNumber,
+    version = version.toLong()
 )
 
 class AccountListResponse(
-        val accounts: List<AccountResponse>
+    val accounts: List<AccountResponse>
 )

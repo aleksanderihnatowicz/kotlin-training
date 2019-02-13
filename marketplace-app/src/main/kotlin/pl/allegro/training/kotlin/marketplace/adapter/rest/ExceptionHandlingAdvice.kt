@@ -14,7 +14,7 @@ class ExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(value = [AccountNotFoundException::class])
     protected fun handleNotFound(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
-            ResponseEntity(exception.asErrorResponse(), HttpStatus.NOT_FOUND)
+        ResponseEntity(exception.asErrorResponse(), HttpStatus.NOT_FOUND)
 
 }
 

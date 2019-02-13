@@ -12,8 +12,8 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.searcher.Def
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.tokenizer.WhitespaceTokenizer
 
 class OfferService(
-        private val offerRepository: OfferRepository,
-        private val idGenerator: IdGenerator
+    private val offerRepository: OfferRepository,
+    private val idGenerator: IdGenerator
 ) {
     private val indexer: Indexer
     private val searcher: Searcher

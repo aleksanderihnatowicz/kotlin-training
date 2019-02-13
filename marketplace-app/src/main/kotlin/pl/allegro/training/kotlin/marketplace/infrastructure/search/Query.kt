@@ -4,10 +4,10 @@ package pl.allegro.training.kotlin.marketplace.infrastructure.search
 typealias Query = HashSet<Phrase>
 
 class Phrase private constructor(
-        val value: String,
-        val required: Boolean = false,
-        val optional: Boolean = false,
-        val forbidden: Boolean = false
+    val value: String,
+    val required: Boolean = false,
+    val optional: Boolean = false,
+    val forbidden: Boolean = false
 ) {
     companion object {
         @JvmStatic

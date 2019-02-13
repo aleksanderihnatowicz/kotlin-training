@@ -27,9 +27,9 @@ class QueryParserSpec extends Specification {
 
         expect:
         parser.parse(query) == [
-                Phrase.required("quick"),
-                Phrase.optional("brown"),
-                Phrase.forbidden("fox")
+            Phrase.required("quick"),
+            Phrase.optional("brown"),
+            Phrase.forbidden("fox")
         ] as Set
     }
 

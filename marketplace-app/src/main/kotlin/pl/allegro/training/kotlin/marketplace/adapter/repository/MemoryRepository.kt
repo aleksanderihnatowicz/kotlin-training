@@ -19,4 +19,5 @@ abstract class MemoryRepository<Entity : Identifiable<Id>, Id> : Repository<Enti
     override fun contains(id: Id): Boolean = id in entities
 }
 
-class InvalidEntityIdException(entityClass: KClass<*>) : RuntimeException("Entity of type ${entityClass.simpleName} has no id.")
+class InvalidEntityIdException(entityClass: KClass<*>)
+    : RuntimeException("Entity of type ${entityClass.simpleName} has no id.")

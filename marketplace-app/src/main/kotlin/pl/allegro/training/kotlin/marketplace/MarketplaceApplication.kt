@@ -33,5 +33,3 @@ class MarketplaceApplication {
 fun main(args: Array<String>) {
     runApplication<MarketplaceApplication>(*args)
 }
-
-

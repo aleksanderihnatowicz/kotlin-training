@@ -8,4 +8,3 @@ interface Indexer {
 
     operator fun plusAssign(doc: Document)
 }
-

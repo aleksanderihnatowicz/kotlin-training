@@ -2,7 +2,6 @@ package pl.allegro.training.kotlin.marketplace.infrastructure
 
 import spock.lang.Specification
 
-
 class ValidationSpec extends Specification {
     def "correct email should pass validation"() {
         given:

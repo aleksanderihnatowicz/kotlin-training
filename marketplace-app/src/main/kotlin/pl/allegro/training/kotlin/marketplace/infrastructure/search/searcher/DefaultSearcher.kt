@@ -6,7 +6,7 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.Query
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.index.Index
 import pl.allegro.training.kotlin.marketplace.infrastructure.search.parser.QueryParser
 
-class DefaultSearcher(private val index: Index): Searcher {
+class DefaultSearcher(private val index: Index) : Searcher {
 
     private val parser: QueryParser = QueryParser()
 

@@ -6,15 +6,15 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.repository.Identifi
 typealias AccountId = String
 
 data class Account(
-        override val id: AccountId? = null,
-        val login: String,
-        val passwordHash: String,
-        val email: String,
-        val phoneNumber: String? = null,
-        val addresses: List<Address>,
-        val status: AccountStatus = AccountStatus.ACTIVE,
-        val version: Int = 0,
-        val rating: Rating = Rating.INITIAL
+    override val id: AccountId? = null,
+    val login: String,
+    val passwordHash: String,
+    val email: String,
+    val phoneNumber: String? = null,
+    val addresses: List<Address>,
+    val status: AccountStatus = AccountStatus.ACTIVE,
+    val version: Int = 0,
+    val rating: Rating = Rating.INITIAL
 ) : Identifiable<AccountId> {
 
     init {
@@ -29,9 +29,9 @@ enum class AccountStatus {
 }
 
 class Address(
-        val street: String,
-        val city: String,
-        val zipCode: String
+    val street: String,
+    val city: String,
+    val zipCode: String
 )
 
 

@@ -33,23 +33,23 @@ class OfferController {
 
     @GetMapping("/offers")
     fun findOffers(@RequestParam query: String = ""): OfferListResponse =
-            offerService.findOffers(query)
-                    .map { it.asOfferResponse() }
-                    .let { OfferListResponse(it) }
+        offerService.findOffers(query)
+            .map { it.asOfferResponse() }
+            .let { OfferListResponse(it) }
 }
 
 class OfferCreationRequest(
-        val title: String,
-        val description: String,
-        val price: BigDecimal,
-        val deliveries: List<DeliveryCreationRequest>
+    val title: String,
+    val description: String,
+    val price: BigDecimal,
+    val deliveries: List<DeliveryCreationRequest>
 ) {
     fun asOffer(sellerId: String): Offer = Offer(
-            sellerId = sellerId,
-            title = title,
-            description = description,
-            price = price,
-            deliveries = deliveries.map { it.asDelivery() }
+        sellerId = sellerId,
+        title = title,
+        description = description,
+        price = price,
+        deliveries = deliveries.map { it.asDelivery() }
     )
 }
 
@@ -62,8 +62,8 @@ class DeliveryCreationRequest(
     val cost: BigDecimal?,
     val timeInDays: Int?
 ) {
-    fun asDelivery(): Delivery = when(type) {
-        SELF_PICKUP -> SelfPickup
+    fun asDelivery(): Delivery = when (type) {
+        SELF_PICKUP     -> SelfPickup
         COURIER_SERVICE -> {
             requireNotNull(cost) { throw InvalidDeliveryDataException("cost is undefined") }
             requireNotNull(timeInDays) { throw InvalidDeliveryDataException("timeInDays is undefined") }
@@ -73,15 +73,15 @@ class DeliveryCreationRequest(
     }
 }
 
-class InvalidDeliveryDataException(message: String): RuntimeException(message)
+class InvalidDeliveryDataException(message: String) : RuntimeException(message)
 
 class OfferResponse(
-        val id: String,
-        val sellerId: String,
-        val title: String,
-        val description: String,
-        val price: BigDecimal,
-        val deliveries: List<DeliveryResponse>
+    val id: String,
+    val sellerId: String,
+    val title: String,
+    val description: String,
+    val price: BigDecimal,
+    val deliveries: List<DeliveryResponse>
 )
 
 class DeliveryResponse(
@@ -96,12 +96,12 @@ private fun Delivery.asDeliveryResponse(): DeliveryResponse = when (this) {
 }
 
 private fun Offer.asOfferResponse() = OfferResponse(
-        id = id!!,
-        sellerId = sellerId,
-        title = title,
-        description = description,
-        price = price,
-        deliveries = deliveries.map { it.asDeliveryResponse() }
+    id = id!!,
+    sellerId = sellerId,
+    title = title,
+    description = description,
+    price = price,
+    deliveries = deliveries.map { it.asDeliveryResponse() }
 )
 
 class OfferListResponse(val offers: List<OfferResponse>)
