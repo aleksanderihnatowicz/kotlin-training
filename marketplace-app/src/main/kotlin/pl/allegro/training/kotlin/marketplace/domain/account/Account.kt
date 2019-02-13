@@ -3,10 +3,8 @@ package pl.allegro.training.kotlin.marketplace.domain.account
 import pl.allegro.training.kotlin.marketplace.infrastructure.isValidEmail
 import pl.allegro.training.kotlin.marketplace.infrastructure.repository.Identifiable
 
-typealias AccountId = String
-
 data class Account(
-    override val id: AccountId? = null,
+    override val id: String? = null,
     val login: String,
     val passwordHash: String,
     val email: String,
@@ -15,7 +13,7 @@ data class Account(
     val status: AccountStatus = AccountStatus.ACTIVE,
     val version: Int = 0,
     val rating: Rating = Rating.INITIAL
-) : Identifiable<AccountId> {
+) : Identifiable<String> {
 
     init {
         if (!isValidEmail(email)) {
