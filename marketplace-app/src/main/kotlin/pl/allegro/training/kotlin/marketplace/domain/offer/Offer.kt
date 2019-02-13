@@ -8,5 +8,7 @@ data class Offer(
         val sellerId: String,
         val title: String,
         val description: String,
-        val price: BigDecimal = BigDecimal.ZERO
+        val price: BigDecimal = BigDecimal.ZERO,
+        val deliveries: List<Delivery> = emptyList()
 ) : Identifiable<String>
+
