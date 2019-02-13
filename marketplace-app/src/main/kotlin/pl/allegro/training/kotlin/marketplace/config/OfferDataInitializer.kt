@@ -1,8 +1,10 @@
 package pl.allegro.training.kotlin.marketplace.config
 
 import org.springframework.stereotype.Component
+import pl.allegro.training.kotlin.marketplace.domain.offer.CourierService
 import pl.allegro.training.kotlin.marketplace.domain.offer.Offer
 import pl.allegro.training.kotlin.marketplace.domain.offer.OfferService
+import pl.allegro.training.kotlin.marketplace.domain.offer.SelfPickup
 import java.math.BigDecimal
 import javax.annotation.PostConstruct
 
@@ -19,7 +21,8 @@ class OfferDataInitializer(private val service: OfferService) {
                     It’s razor thin, feather light, and even faster and more powerful than before.
                     It has the brightest, most colorful Mac notebook display ever.
                 """.trimIndent(),
-            price = BigDecimal(140.99)
+            price = BigDecimal(140.99),
+            deliveries = listOf(SelfPickup, CourierService(BigDecimal(8.90), 2))
         )
         service.addOffer(sampleOffer)
     }
