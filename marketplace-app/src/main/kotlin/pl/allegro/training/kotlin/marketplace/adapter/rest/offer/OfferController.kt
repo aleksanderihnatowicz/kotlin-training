@@ -18,8 +18,12 @@ class OfferController {
     private lateinit var offerService: OfferService
 
     @PostMapping("/accounts/{accountId}/offers")
-    fun addOffer(@PathVariable accountId: String, @RequestBody creationRequest: OfferCreationRequest): ResponseEntity<OfferResponse> {
-        return offerService.addOffer(creationRequest.asOffer(accountId)).let { ResponseEntity(it.asOfferResponse(), HttpStatus.CREATED) }
+    fun addOffer(
+        @PathVariable accountId: String,
+        @RequestBody creationRequest: OfferCreationRequest
+    ): ResponseEntity<OfferResponse> {
+        val offer = offerService.addOffer(creationRequest.asOffer(accountId))
+        return ResponseEntity(offer.asOfferResponse(), HttpStatus.CREATED)
     }
 
     @GetMapping("/offers")
