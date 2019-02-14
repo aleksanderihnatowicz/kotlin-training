@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 @Configuration
@@ -20,7 +21,7 @@ class JacksonConfiguration {
 class BigDecimalSerializer : JsonSerializer<BigDecimal>() {
 
     override fun serialize(value: BigDecimal?, generator: JsonGenerator?, serializers: SerializerProvider?) {
-        val stringValue = value?.setScale(2, BigDecimal.ROUND_HALF_UP).toString()
+        val stringValue = value?.setScale(2, RoundingMode.HALF_UP).toString()
         generator?.writeString(stringValue)
     }
 
