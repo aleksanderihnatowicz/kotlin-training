@@ -14,14 +14,11 @@ import pl.allegro.training.kotlin.marketplace.domain.offer.EmptyQueryException
 @ControllerAdvice
 class ExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(value = [
-        AccountNotFoundException::class,
-        InvalidDeliveryDataException::class
-    ])
+    @ExceptionHandler(AccountNotFoundException::class, InvalidDeliveryDataException::class)
     protected fun handleNotFound(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
         ResponseEntity(exception.asErrorResponse(), HttpStatus.NOT_FOUND)
 
-    @ExceptionHandler(value = [EmptyQueryException::class])
+    @ExceptionHandler(EmptyQueryException::class)
     protected fun handleBadRequest(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
         ResponseEntity(exception.asErrorResponse(), HttpStatus.BAD_REQUEST)
 
