@@ -27,7 +27,7 @@ class OfferController {
     }
 
     @GetMapping("/offers")
-    fun findOffers(@RequestParam query: String = ""): OfferListResponse =
+    fun findOffers(@RequestParam(defaultValue = "") query: String): OfferListResponse =
         offerService.findOffers(query)
             .map { it.asOfferResponse() }
             .let { OfferListResponse(it) }
