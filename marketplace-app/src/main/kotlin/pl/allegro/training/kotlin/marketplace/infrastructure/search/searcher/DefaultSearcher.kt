@@ -19,7 +19,7 @@ class DefaultSearcher(private val index: Index) : Searcher {
         val invalidDocs = index.findTokens(query.forbiddenPhrases)
         val optionalDocs = index.findTokens(query.optionalPhrases)
 
-        return (validDocs - invalidDocs).sortedWith(PresenceComparator(optionalDocs))
+        return (validDocs + optionalDocs - invalidDocs).sortedWith(PresenceComparator(optionalDocs))
     }
 
     private fun Index.findTokens(phrases: List<Phrase>): Set<DocumentId> =
