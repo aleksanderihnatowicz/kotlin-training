@@ -8,6 +8,7 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import pl.allegro.training.kotlin.marketplace.adapter.rest.offer.InvalidDeliveryDataException
 import pl.allegro.training.kotlin.marketplace.domain.account.AccountNotFoundException
+import pl.allegro.training.kotlin.marketplace.domain.offer.EmptyQueryException
 
 
 @ControllerAdvice
@@ -19,6 +20,10 @@ class ExceptionHandlingAdvice : ResponseEntityExceptionHandler() {
     ])
     protected fun handleNotFound(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
         ResponseEntity(exception.asErrorResponse(), HttpStatus.NOT_FOUND)
+
+    @ExceptionHandler(value = [EmptyQueryException::class])
+    protected fun handleBadRequest(exception: RuntimeException, request: WebRequest): ResponseEntity<ErrorResponse> =
+        ResponseEntity(exception.asErrorResponse(), HttpStatus.BAD_REQUEST)
 
 }
 

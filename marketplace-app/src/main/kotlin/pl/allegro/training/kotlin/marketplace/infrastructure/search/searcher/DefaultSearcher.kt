@@ -11,8 +11,9 @@ class DefaultSearcher(private val index: Index) : Searcher {
     private val parser: QueryParser = QueryParser()
 
     override fun search(queryText: String): List<DocumentId> {
+        if (queryText.isEmpty()) { return emptyList() }
+
         val query = parser.parse(queryText)
-        require(query.isNotEmpty()) { throw EmptyQueryException() }
 
         val validDocs = index.findTokens(query.requiredPhrases)
         val invalidDocs = index.findTokens(query.forbiddenPhrases)
