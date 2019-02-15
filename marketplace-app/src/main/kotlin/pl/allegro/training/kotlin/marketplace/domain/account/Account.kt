@@ -32,4 +32,12 @@ class Address(
     val zipCode: String
 )
 
-
+fun main() {
+    val account: Account? = try {
+        Account("1", "john.doe", "A4B23FE1", "gmail.com", null, emptyList())
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+    println("email = " + account!!.email)
+}
