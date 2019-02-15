@@ -8,7 +8,6 @@ class ValidationSpec extends Specification {
         def email = "john@doe.com"
 
         expect:
-        // invoking top level function
         ValidationKt.isValidEmail(email) == true
     }
 
