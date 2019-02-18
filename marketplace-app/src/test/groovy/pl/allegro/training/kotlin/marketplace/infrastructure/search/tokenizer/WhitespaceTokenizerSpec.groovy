@@ -12,7 +12,7 @@ class WhitespaceTokenizerSpec extends Specification {
         def text = "The quick brown fox jumps over the lazy dog"
 
         expect:
-        tokenizer.tokenize(text).size() == 9
+        tokenizer.tokenize(text).size() == 8
     }
 
     def "should return zero tokens for text containing spaces only"() {
