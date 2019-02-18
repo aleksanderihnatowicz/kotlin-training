@@ -7,7 +7,6 @@ class AccountTestBuilder {
         passwordHash: 'A4B23FE1',
         email: 'john.doe@gmail.com',
         phoneNumber: null,
-        addressess: [],
         status: AccountStatus.ACTIVE,
         version: 0,
         rating: Rating.INITIAL
@@ -21,7 +20,6 @@ class AccountTestBuilder {
             allArgs.passwordHash as String,
             allArgs.email as String,
             allArgs.phoneNumber as String,
-            allArgs.addressess as List,
             allArgs.status as AccountStatus,
             allArgs.version as Integer,
             allArgs.rating as Rating

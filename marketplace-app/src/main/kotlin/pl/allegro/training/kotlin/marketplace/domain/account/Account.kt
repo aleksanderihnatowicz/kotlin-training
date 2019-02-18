@@ -9,7 +9,6 @@ data class Account(
     val passwordHash: String,
     val email: String,
     val phoneNumber: String? = null,
-    val addresses: List<Address>,
     val status: AccountStatus = AccountStatus.ACTIVE,
     val version: Int = 0,
     val rating: Rating = Rating.INITIAL
@@ -26,15 +25,9 @@ enum class AccountStatus {
     ACTIVE, BLOCKED
 }
 
-class Address(
-    val street: String,
-    val city: String,
-    val zipCode: String
-)
-
 fun main() {
     val account: Account? = try {
-        Account("1", "john.doe", "A4B23FE1", "gmail.com", null, emptyList())
+        Account("1", "john.doe", "A4B23FE1", "gmail.com", null)
     } catch (e: Exception) {
         e.printStackTrace()
         null

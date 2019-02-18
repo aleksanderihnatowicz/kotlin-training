@@ -13,7 +13,6 @@ class AccountCreationRequest(
         login = login,
         passwordHash = SecureHashAlgorithmUtils.sha256(password),
         email = email,
-        phoneNumber = phoneNumber,
-        addresses = emptyList()
+        phoneNumber = phoneNumber
     )
 }
