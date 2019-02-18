@@ -8,7 +8,12 @@ class AccountService(
     private val idGenerator: IdGenerator
 ) {
     fun addAccount(account: Account): Account {
-        val accountWithId = account.copy(id = account.id ?: idGenerator.getNextId())
+        val id = if(account.id != null) {
+            account.id
+        } else {
+            idGenerator.getNextId()
+        }
+        val accountWithId = account.copy(id = id)
         logger.debug("Adding account with id = {}", accountWithId)
         repository.save(accountWithId)
         return accountWithId
