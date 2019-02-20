@@ -2,6 +2,7 @@ package pl.allegro.training.kotlin.marketplace.adapter.rest.account
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,7 +18,7 @@ import pl.allegro.training.kotlin.util.hash.SecureHashAlgorithmUtils as SHA
 class AccountController(private val accountService: AccountService) {
 
     @PostMapping
-    fun addAccount(@RequestBody creationRequest: AccountCreationRequest): ResponseEntity<AccountResponse> {
+    fun addAccount(@RequestBody @Validated creationRequest: AccountCreationRequest): ResponseEntity<AccountResponse> {
         val account = accountService.addAccount(creationRequest.asAccount())
         return ResponseEntity(account.asAccountResponse(), HttpStatus.CREATED)
     }
