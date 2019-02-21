@@ -4,7 +4,7 @@ import pl.allegro.training.kotlin.marketplace.infrastructure.search.Document
 
 interface Indexer {
 
-    // fun addDocument(doc: Document)
+    // fun save(doc: Document)
 
     operator fun plusAssign(doc: Document)
 }

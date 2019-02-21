@@ -27,17 +27,23 @@ class OfferService(
     }
 
     fun addOffer(offer: Offer): Offer {
-        val persistent = offer.copy(id = offer.id ?: idGenerator.getNextId())
-        repository.save(persistent)
-        indexer += persistent.asDocument()
-        return persistent
+        val offerWithId = offer.copy(id = offer.id ?: idGenerator.getNextId())
+        repository.save(offerWithId)
+        indexer += offerWithId.asDocument()
+        return offerWithId
     }
 
     fun findOffers(query: String): List<Offer> {
         ensureQueryNotEmpty(query)
 
-        return searcher.search(query)
-            .mapNotNull { repository.findById(it.value) }
+        val offers = ArrayList<Offer>()
+
+        for(result in searcher.search(query)) {
+            val offer = repository.findById(result.value)
+            offer?.let { offers.add(it) }
+        }
+
+        return offers
     }
 
     private fun ensureQueryNotEmpty(query: String) {
