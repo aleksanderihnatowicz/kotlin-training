@@ -9,6 +9,7 @@ data class Offer(
     val title: String,
     val description: String,
     val price: BigDecimal = BigDecimal.ZERO,
-    val deliveries: List<Delivery> = emptyList()
+    val deliveries: List<Delivery> = emptyList(),
+    val badge: Badge = Badge.NONE
 ) : Identifiable<String>
 
