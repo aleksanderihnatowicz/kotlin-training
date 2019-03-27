@@ -1,5 +1,5 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
-
+/*
 class AccountTestBuilder {
     static defaults = [
         id: null,
@@ -26,3 +26,4 @@ class AccountTestBuilder {
         )
     }
 }
+*/

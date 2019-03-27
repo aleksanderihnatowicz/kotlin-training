@@ -1,5 +1,5 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
-
+/*
 import spock.lang.Specification
 
 import static pl.allegro.training.kotlin.marketplace.domain.account.AccountTestBuilder.account
@@ -27,3 +27,4 @@ class AccountSpec extends Specification {
         thrown InvalidAccountException
     }
 }
+*/
