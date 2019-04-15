@@ -8,8 +8,7 @@ class AccountTestBuilder {
         email: 'john.doe@gmail.com',
         phoneNumber: null,
         status: AccountStatus.ACTIVE,
-        version: 0,
-        rating: Rating.INITIAL
+        version: 0
     ]
 
     static account(Map args) {
@@ -21,8 +20,7 @@ class AccountTestBuilder {
             allArgs.email as String,
             allArgs.phoneNumber as String,
             allArgs.status as AccountStatus,
-            allArgs.version as Integer,
-            allArgs.rating as Rating
+            allArgs.version as Integer
         )
     }
 }

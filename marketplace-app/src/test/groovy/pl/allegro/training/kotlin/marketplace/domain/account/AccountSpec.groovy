@@ -10,7 +10,7 @@ class AccountSpec extends Specification {
         def invalidEmail = "gmail.com"
 
         when:
-        new Account("1", "john.doe", "A4B23FE1", invalidEmail, null, AccountStatus.ACTIVE, 0, Rating.INITIAL)
+        new Account("1", "john.doe", "A4B23FE1", invalidEmail, null, AccountStatus.ACTIVE, 0)
 
         then:
         thrown InvalidAccountException
