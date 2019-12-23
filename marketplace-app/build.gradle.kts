@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     groovy
-    kotlin("jvm") version "1.3.21"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.21"
+    kotlin("jvm") version "1.3.60"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.60"
     id("org.springframework.boot") version "2.2.2.RELEASE"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
 }
