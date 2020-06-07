@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
+    application
     groovy
-    kotlin("jvm") version "1.3.60"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.60"
+    kotlin("jvm") version "1.3.70"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.70"
     id("org.springframework.boot") version "2.2.2.RELEASE"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
 }
@@ -23,11 +23,11 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.3")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.spockframework:spock-core:1.2-groovy-2.5")
+    testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+application {
+    mainClassName = "pl.allegro.training.kotlin.marketplace.MarketplaceApplicationKt"
 }
 
 val compileKotlin: KotlinCompile by tasks
