@@ -1,5 +1,6 @@
 package pl.allegro.training.kotlin.marketplace.infrastructure
 
+import pl.allegro.training.kotlin.marketplace.domain.account.ValidationKt
 import spock.lang.Specification
 
 class ValidationSpec extends Specification {
