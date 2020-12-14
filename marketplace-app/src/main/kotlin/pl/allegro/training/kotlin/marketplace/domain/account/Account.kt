@@ -1,5 +1,7 @@
 package pl.allegro.training.kotlin.marketplace.domain.account
 
+import pl.allegro.training.kotlin.marketplace.infrastructure.isValidEmail
+
 class Account(
     val id: String,
     val login: String,
@@ -8,27 +10,30 @@ class Account(
     val status: AccountStatus = AccountStatus.ACTIVE,
     val phoneNumber: String? = null,
     val version: Int = 0
-)
+) {
+    init {
+        if(!isValidEmail(email)) {
+            throw InvalidAccountException("invalid email: $email")
+        }
+    }
+}
 
 enum class AccountStatus {
     ACTIVE, BLOCKED
 }
 
-val HOST = "allegro.pl"
-
-// String[]    Array<String>
-// Integer[]   Array<Int>
-// int[]       IntArray, BooleanArray, FloatArray
-
 fun main(args: Array<String>) {
-    val account = Account(
-        status = AccountStatus.BLOCKED,
-        email = "john@gmail.com",
-        passwordHash = "CAFE",
-        id = "1",
-        login = "john",
-        version = 1
-    )
+    val account = try {
+        Account(
+            email = "gmail.com",
+            passwordHash = "CAFE",
+            id = "1",
+            login = "john"
+        )
+    } catch(e: InvalidAccountException) {
+        println("Exception: $e")
+        null
+    }
 
-    println(account.login)
+    println(account!!.login)
 }
