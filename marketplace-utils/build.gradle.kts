@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm")
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {

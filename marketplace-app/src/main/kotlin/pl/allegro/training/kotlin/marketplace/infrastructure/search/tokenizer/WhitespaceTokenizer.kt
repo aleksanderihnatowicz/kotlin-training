@@ -6,6 +6,6 @@ class WhitespaceTokenizer : Tokenizer {
     override fun tokenize(text: String): Set<String> = text
         .split(whitespaceRegex)
         .filterNot { it.isBlank() }
-        .map { it.toLowerCase() }
+        .map { it.lowercase() }
         .toSet()
 }
